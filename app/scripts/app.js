@@ -34,5 +34,5 @@ angular
 
     $mdThemingProvider.theme('default')
     .primaryPalette('cyan')
-    .accentPalette('amber');
+    .accentPalette('orange');
   });
