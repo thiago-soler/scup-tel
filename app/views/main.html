@@ -1,98 +1,109 @@
-<div layout="row" ng-controller="MainCtrl as ctrl">
-  <div
-    flex="100"
-    offset="0">
+<article 
+  ng-show="ctrl.load"
+  layout="column" 
+  class="box-msgs">
 
-    <header class="bg-base" layout="row">
-      <h1 flex="50">
-        <a href="#">Scup</a>
-      </h1>
-      <div flex="50">
-        <h2>Fale</h2>
-      </div>
-    </header>
-    
-    <article layout="column" class="box-calculate">
-
-      <h3 class="md-headline md-primary" flex="100">Comparar Planos</h3>
-
-      <div layout="row">
-        
-        <ul
-          flex-sm="100" flex-md="80" flex-gt-sm="60"
-          offset-sm="0" offset-md="10" offset-gt-sm="20"
-          layout="row" layout-sm="column" layout-wrap
-          class="md-whiteframe-z2">
-          
-          <li flex-sm="100" flex="33">
-            <md-input-container layout-padding>
-              <label>Origem</label>
-              <md-select ng-model="ctrl.origin">
-                <md-option ng-repeat="listDDD in ctrl.listDDD" value="{{listDDD.ddd}}">
-                  {{listDDD.ddd}} - {{listDDD.city}}
-                </md-option>
-              </md-select>
-            </md-input-container>
-          </li>
-          <li flex-sm="100" flex="33">
-            <md-input-container layout-padding>
-              <label>Destino</label>
-              <md-select ng-model="ctrl.destination">
-                <md-option ng-repeat="listDDD in ctrl.listDDD" value="{{listDDD.ddd}}">
-                  {{listDDD.ddd}} - {{listDDD.city}}
-                </md-option>
-              </md-select>
-            </md-input-container>
-          </li>
-          <li flex-sm="100" flex="33">
-            <md-input-container layout-padding>
-              <label>Tempo</label>
-              <input>
-            </md-input-container>
-          </li>
-
-        </ul>
-        
-      </div>
-
-    </article>
-    
     <div layout="row">
       
-      <article class="box-prices"
+      <div
         flex-sm="100" flex-md="80" flex-gt-sm="60"
         offset-sm="0" offset-md="10" offset-gt-sm="20"
-        layout="row" layout-wrap>
-        
-          <p flex-sm="50" flex="21" offset="1">
-            <span class="title">Fale + 30</span>
-            <strong class="price">
-              <span class="currency">R$</span>200<span class="decimal">,00</span>
-            </strong>
-          </p>
-          <p flex-sm="50" flex="21" offset-sm="0" offset="5">
-            <span class="title">Fale + 60</span>
-            <strong class="price">
-              <span class="currency">R$</span>200<span class="decimal">,00</span>
-            </strong>
-          </p>
-          <p flex-sm="50" flex="21" offset-sm="0" offset="5">
-            <span class="title">Fale + 120</span>
-            <strong class="price">
-              <span class="currency">R$</span>200<span class="decimal">,00</span>
-            </strong>
-          </p>
-          <p flex-sm="50" flex="21" offset-sm="0" offset="5">
-            <span class="title">Normal</span>
-            <strong class="price">
-              <span class="currency">R$</span>200<span class="decimal">,00</span>
-            </strong>
-          </p>
-        
-      </article>
+        layout="row" layout-wrap layout-align="space-around"
+        class="md-whiteframe-z2">
+      
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+
+
+        <p flex="100" class="md-body-2"><strong>Por favor aguarde enquanto os dados são carregados.</strong></p>
+      </div>
+
 
     </div>
 
+</article>
+
+<article 
+  ng-hide="ctrl.load"
+  layout="column"
+  class="box-calculate">
+
+  <h3 class="md-headline md-primary" flex="100">Comparar Planos</h3>
+
+  <div layout="row">
+    
+    <ul
+      flex-sm="100" flex-md="80" flex-gt-sm="60"
+      offset-sm="0" offset-md="10" offset-gt-sm="20"
+      layout="row" layout-sm="column" layout-wrap
+      class="md-whiteframe-z2">
+      
+      <li flex-sm="100" flex="33">
+        <md-input-container layout-padding>
+          <label>Origem</label>
+          <md-select ng-model="ctrl.origin">
+            <md-option ng-repeat="listDDD in ctrl.listDDD" value="{{listDDD.ddd}}">
+              {{listDDD.ddd}} - {{listDDD.city}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </li>
+      <li flex-sm="100" flex="33">
+        
+        <md-input-container layout-padding>
+          <label>Destino</label>
+          <md-select ng-model="ctrl.destination">
+            <md-option ng-repeat="listDDD in ctrl.listDDD" value="{{listDDD.ddd}}">
+              {{listDDD.ddd}} - {{listDDD.city}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+      </li>
+      <li flex-sm="100" flex="33">
+        <md-input-container layout-padding>
+          <label>Tempo</label>
+          <input numbers-only>
+        </md-input-container>
+      </li>
+
+    </ul>
+    
   </div>
+
+</article>
+
+<div ng-hide="ctrl.load" layout="row">
+  
+  <article class="box-prices"
+    flex-sm="100" flex-md="80" flex-gt-sm="60"
+    offset-sm="0" offset-md="10" offset-gt-sm="20"
+    layout="row" layout-wrap>
+    
+      <p flex-sm="50" flex="21" offset="1">
+        <span class="title">Fale + 30</span>
+        <strong class="price">
+          <span class="currency">R$</span>-<span class="decimal">,00</span>
+        </strong>
+      </p>
+      <p flex-sm="50" flex="21" offset-sm="0" offset="5">
+        <span class="title">Fale + 60</span>
+        <strong class="price">
+          <span class="currency">R$</span>-<span class="decimal">,00</span>
+        </strong>
+      </p>
+      <p flex-sm="50" flex="21" offset-sm="0" offset="5">
+        <span class="title">Fale + 120</span>
+        <strong class="price">
+          <span class="currency">R$</span>-<span class="decimal">,00</span>
+        </strong>
+      </p>
+      <p flex-sm="50" flex="21" offset-sm="0" offset="5">
+        <span class="title">Normal</span>
+        <strong class="price">
+          <span class="currency">R$</span>-<span class="decimal">,00</span>
+        </strong>
+      </p>
+    
+  </article>
 
 </div>

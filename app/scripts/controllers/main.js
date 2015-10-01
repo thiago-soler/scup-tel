@@ -8,26 +8,46 @@
  * Controller of the scupTelApp
  */
 angular.module('scupTelApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
-    var that = this;
-
-    that.listDDD = [];
-
+  .controller('MainCtrl', function (apiRest, $q) {
     
-    $http({
-	  method: 'GET',
-	  url: 'http://private-fe2a-scuptel.apiary-mock.com/ddd/details'
-	}).then(function successCallback(response) {
-    	that.listDDD = response.data.data;
-	  }, function errorCallback(response) {
-    	console.log('error', response);
-	  });
+    var $public = this,
+        $private = {};
+    
+    $public.listDDD = [];
+    $public.load = true;
+
+    /**
+     * Get all api data
+     * @return {[type]} [description]
+     */
+    $private.getApiData = function () {
+      
+      var queue = [
+          apiRest.get({filter1: 'ddd', filter2: 'pricing'}).$promise,
+          apiRest.get({filter1: 'ddd', filter2: 'details'}).$promise,
+          apiRest.get({filter1: 'plans'}).$promise
+        ];
+
+      $q.all(queue)
+        .then(
+          function(results) {
+            $public.listDDD = results[1].data;
+            $public.load = false;
+          },
+          function(results) {
+            console.log('error', results);
+          }
+        );
+
+    };
+
+    $private.init = (function () {
+      
+      $private.getApiData();
+
+    })();
+
 
 
   });

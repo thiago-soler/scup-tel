@@ -20,7 +20,25 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <section ng-view=""></section>
+    <section>
+      <div layout="row">
+        <div
+          flex="100"
+          offset="0">
+
+          <header class="bg-base" layout="row">
+            <h1 flex="50">
+              <a href="#">Scup</a>
+            </h1>
+            <div flex="50">
+              <h2>Fale</h2>
+            </div>
+          </header>
+
+          <div layout="column" ng-view=""></div>
+        </div>
+      </div>
+    </section>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -51,6 +69,8 @@
         <script src="bower_components/angular-mocks/angular-mocks.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/services/apirest.js"></script>
+        <script src="scripts/services/url_api_rest.js"></script>
         <!-- endbuild -->
 </body>
 </html>
