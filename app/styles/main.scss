@@ -142,8 +142,13 @@ header:after{
     }
 
     .price{
-      font: bold 30px/33px Arial;
+      font-size: 0;
       color: #666;
+      cursor: default;
+
+      .integer{
+        font: bold 30px/33px Arial;
+      }
     }
 
 
