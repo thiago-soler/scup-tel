@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc service
- * @name scupTelApp.URLAPIREST
+ * @name scupTelApp.URL_API_REST
  * @description Constant to set url standard.
- * # URLAPIREST
+ * # URL_API_REST
  * Constant in the scupTelApp.
  */
 angular.module('scupTelApp')

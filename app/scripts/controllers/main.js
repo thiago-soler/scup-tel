@@ -11,7 +11,7 @@ angular.module('scupTelApp')
 
   .controller('MainCtrl', function ($scope, apiRest, $q, STANDARD_PLAN) {
     
-    
+    $scope.awesomeThings = ['', '', ''];
     var $public = this,
         $private = {};
     
@@ -23,11 +23,19 @@ angular.module('scupTelApp')
     
     $private.consultPriceList = [];
     
-    $public.calcPrices = function (plansList, priceList) {
+    /**
+     * Calculates price of plans
+     * @param  {objec} plansList Object plans
+     * @param  {object} priceList Object price
+     * @return {object} prices Object with price of plans calculated {value: 100.94, currency:'R$', integer: 100, decimal: ',94'}
+     */
+    $public.calcPrices = function (plansList, priceList, scope) {
 
-      var dddOrigin = $scope.ctrl.origin,
-          dddDestination = $scope.ctrl.destination,
-          newTime = $scope.ctrl.time,
+      scope = scope || {ctrl: {}};
+
+      var dddOrigin = scope.ctrl.origin,
+          dddDestination = scope.ctrl.destination,
+          newTime = scope.ctrl.time,
           idx,
           prices = {};
       
@@ -170,7 +178,7 @@ angular.module('scupTelApp')
      * Get all api data
      * @return {[type]} [description]
      */
-    $private.getApiData = function () {
+    $public.getApiData = function () {
       
       // Creates a queue to get all data of the API REST
       var queue = [
@@ -204,7 +212,7 @@ angular.module('scupTelApp')
 
     $private.init = (function () {
       
-      $private.getApiData();
+      $public.getApiData();
 
     })();
 

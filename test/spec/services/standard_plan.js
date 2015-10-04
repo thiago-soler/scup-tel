@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: STANDARDPLAN', function () {
+describe('Service: STANDARD_PLAN', function () {
 
   // load the service's module
   beforeEach(module('scupTelApp'));
 
   // instantiate service
-  var STANDARDPLAN;
-  beforeEach(inject(function (_STANDARDPLAN_) {
-    STANDARDPLAN = _STANDARDPLAN_;
+  var STANDARD_PLAN;
+  beforeEach(inject(function (_STANDARD_PLAN_) {
+    STANDARD_PLAN = _STANDARD_PLAN_;
   }));
 
   it('should do something', function () {
-    expect(!!STANDARDPLAN).toBe(true);
+    expect(!!STANDARD_PLAN).toBe(true);
   });
 
 });

@@ -7,6 +7,7 @@ describe('Service: apiRest', function () {
 
   // instantiate service
   var apiRest;
+  
   beforeEach(inject(function (_apiRest_) {
     apiRest = _apiRest_;
   }));

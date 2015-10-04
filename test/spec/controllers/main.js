@@ -6,17 +6,26 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('scupTelApp'));
 
   var MainCtrl,
-    scope;
+    $scope,
+    ctrl;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
+    
+    $scope = $rootScope.$new();
+    ctrl = $scope;
+
+    MainCtrl = $controller('MainCtrl as ctrl', {
+      $scope: $scope
     });
+
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+  it('calcPrices - Testa funcao que realiza o calculo dos planos', function () {
+    
+    expect(MainCtrl.calcPrices()).toEqual({});
+
+    // console.log(MainCtrl.calcPrices());
+
   });
 });

@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc service
- * @name scupTelApp.STANDARDPLAN
+ * @name scupTelApp.STANDARD_PLAN
  * @description
- * # STANDARDPLAN
+ * # STANDARD_PLAN
  * Constant in the scupTelApp.
  */
 angular.module('scupTelApp')
