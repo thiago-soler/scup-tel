@@ -20,6 +20,7 @@ angular.module('scupTelApp')
     $public.plansListPrint = [];
     $public.priceList = [];
     $public.load = true;
+    $public.error = false;
     
     $private.consultPriceList = [];
     
@@ -31,11 +32,11 @@ angular.module('scupTelApp')
      */
     $public.calcPrices = function (plansList, priceList, scope) {
 
-      scope = scope || {ctrl: {}};
+      scope = scope || {form: {}};
 
-      var dddOrigin = scope.ctrl.origin,
-          dddDestination = scope.ctrl.destination,
-          newTime = scope.ctrl.time,
+      var dddOrigin = scope.form.origin,
+          dddDestination = scope.form.destination,
+          newTime = scope.form.time,
           idx,
           prices = {};
       
@@ -49,7 +50,7 @@ angular.module('scupTelApp')
       for (idx in plansList) {
 
         var planTime = plansList[idx].time;
-        
+
         if (typeof priceList[dddOrigin][dddDestination] === 'number') {
 
           var price = priceList[dddOrigin][dddDestination],
@@ -102,7 +103,7 @@ angular.module('scupTelApp')
 
     };
 
-    $private.createPlansListPrint = function (plansList) {
+    $public.createPlansListPrint = function (plansList) {
 
       var listPrint = {},
           idx = {},
@@ -132,11 +133,11 @@ angular.module('scupTelApp')
 
     };
 
-    $private.formatPriceList = function (priceList) {
+    $public.formatPriceList = function (priceList) {
       var idx,
           formattedList = {},
           temp;
-      
+
       for (idx in priceList) {
         
         if ( typeof formattedList[priceList[idx].origin] === 'undefined') {
@@ -159,18 +160,26 @@ angular.module('scupTelApp')
 
     };
 
-    $public.refreshData = function () {
+    $public.refreshData = function (self, scope) {
 
-      var prices = $public.calcPrices($public.plansList, $public.priceList),
-          idx;
-          
+      scope = $scope || scope;
+      self = $public || self;
+
+      var prices = self.calcPrices(self.plansList, self.priceList, scope),
+          idx,
+          result = false;
+
       for(idx in prices){
 
-        $public.plansListPrint[idx].price.currency = prices[idx].currency;
-        $public.plansListPrint[idx].price.integer = prices[idx].integer;
-        $public.plansListPrint[idx].price.decimal = prices[idx].decimal;
+        self.plansListPrint[idx].price.currency = prices[idx].currency;
+        self.plansListPrint[idx].price.integer = prices[idx].integer;
+        self.plansListPrint[idx].price.decimal = prices[idx].decimal;
+
+        result = true;
 
       }
+
+      return result;
 
     };
 
@@ -191,20 +200,21 @@ angular.module('scupTelApp')
         .then(
           function(results) {
             
-            $public.priceList = $private.formatPriceList(results[0].data);
+            $public.priceList = $public.formatPriceList(results[0].data);
             $public.dddList = results[1].data;
             $public.plansList = results[2].data;
 
             // Adding the standard plan
             $public.plansList.push({plan: 'Normal',time: STANDARD_PLAN.toString()});
 
-            $public.plansListPrint = $private.createPlansListPrint($public.plansList);
+            $public.plansListPrint = $public.createPlansListPrint($public.plansList);
 
             $public.load = false;
 
           },
           function(results) {
             console.log('error', results);
+            $public.error = true;
           }
         );
 

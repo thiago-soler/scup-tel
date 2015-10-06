@@ -11,9 +11,14 @@
         layout="row" layout-wrap layout-align="space-around"
         class="md-whiteframe-z2">
       
-        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        <md-progress-circular md-mode="indeterminate" ng-hide="ctrl.error"></md-progress-circular>
 
-        <p flex="100" class="md-body-2"><strong>Por favor aguarde enquanto os dados são carregados.</strong></p>
+        <p flex="100" class="md-body-2" ng-hide="ctrl.error"><strong>Por favor aguarde enquanto os dados são carregados.</strong></p>
+        
+        <p flex="100" class="md-body-2" ng-show="ctrl.error">
+          <strong>Desculpe, ocorreu um erro inesperado tente novamente em instantes.</strong><br />
+          <a target="_self" href="/index.html">clique aqui.</a>
+        </p>
       
       </div>
 
@@ -39,7 +44,7 @@
       <li flex-sm="100" flex="40">
         <md-input-container layout-padding>
           <label>Origem</label>
-          <md-select ng-model="ctrl.origin" md-on-close="ctrl.refreshData()">
+          <md-select ng-model="form.origin" md-on-close="ctrl.refreshData()">
             <md-option ng-repeat="dddList in ctrl.dddList" value="{{dddList.ddd}}">
               {{dddList.ddd}} - {{dddList.city}}
             </md-option>
@@ -50,7 +55,7 @@
         
         <md-input-container layout-padding>
           <label>Destino</label>
-          <md-select ng-model="ctrl.destination" md-on-close="ctrl.refreshData()">
+          <md-select ng-model="form.destination" md-on-close="ctrl.refreshData()">
             <md-option ng-repeat="dddList in ctrl.dddList" value="{{dddList.ddd}}">
               {{dddList.ddd}} - {{dddList.city}}
             </md-option>
@@ -61,7 +66,7 @@
       <li flex-sm="100" flex="20">
         <md-input-container layout-padding>
           <label>Tempo</label>
-          <input ng-model="ctrl.time" number-only maxlength="5" ng-keyup="ctrl.refreshData()">
+          <input ng-model="form.time" number-only maxlength="5" ng-keyup="ctrl.refreshData()">
         </md-input-container>
       </li>
     </ul>
