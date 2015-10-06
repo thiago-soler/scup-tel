@@ -4,6 +4,21 @@ html {
   overflow-y: scroll;
 }
 
+.md-layout-row > .flex-50, .md-layout-row > .flex-50 {
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    max-height: 100%;
+}
+
+.flex-50 {
+    box-sizing: border-box;
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+}
+
 .bg-base{
   background-color: #2f3032;
 }
@@ -17,6 +32,12 @@ header{
     padding: 0;
   }
   
+  h1, h1 + div{
+    width: 50%;
+    position: relative;
+    float: left;
+  }
+
   h1 a{
     display: block;
     float: right;
@@ -24,7 +45,7 @@ header{
     height: 40px;
     background-image: url(//cdnsite.scup.com/assets/img/scup-logo-orange.svg?v=2015929227);
     background-size: 110px 40px;
-    text-indent: -999px;
+    text-indent: -9999px;
     margin: 0;
     padding: 0;
   }

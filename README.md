@@ -18,3 +18,18 @@ Run `grunt` for building and `grunt serve` for preview.
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+## Technology applied
+
+* Yeoman, Bower, Grunt;
+* HTML5;
+* AngularJs, AngularMaterial, Google Material Design;
+* MVC;
+* Sass;
+* Karma, Jasmine;
+* Automated testing;
+
+## Links
+
+[SculpTel link project]:http://asa300.com.br/scup-tel/
+[Application Coverage]:http://asa300.com.br/scup-tel/coverage/PhantomJS%201.9.8%20(Windows%207%200.0.0)/index.html

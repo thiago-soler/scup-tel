@@ -103,6 +103,11 @@ angular.module('scupTelApp')
 
     };
 
+    /**
+     * Creates list to print plans
+     * @param  {Object} plansList Plans list
+     * @return {Object} listPrint Returns plans list formatted
+     */
     $public.createPlansListPrint = function (plansList) {
 
       var listPrint = {},
@@ -133,6 +138,11 @@ angular.module('scupTelApp')
 
     };
 
+    /**
+     * Formats prices object for a more agile model
+     * @param  {Object} priceList Plans list
+     * @return {[type]} formattedList Returns price list formatted
+     */
     $public.formatPriceList = function (priceList) {
       var idx,
           formattedList = {},
@@ -160,6 +170,12 @@ angular.module('scupTelApp')
 
     };
 
+    /**
+     * Method to refresh data model that show the plans
+     * @param  {Object} self  Scope of method
+     * @param  {Object} scope Scope of application
+     * @return {Boolean} result Returns true if some data has changed
+     */
     $public.refreshData = function (self, scope) {
 
       scope = $scope || scope;
@@ -185,7 +201,7 @@ angular.module('scupTelApp')
 
     /**
      * Get all api data
-     * @return {[type]} [description]
+     * @return {undefined}
      */
     $public.getApiData = function () {
       
