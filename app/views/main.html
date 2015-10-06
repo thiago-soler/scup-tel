@@ -1,24 +1,96 @@
-<div layout="row">
-  
-  <div
-    flex-sm="100" flex-md="80" flex-gt-md="60"
-    offset-sm="0" offset-md="10" offset-gt-md="20">
+<article 
+  ng-show="ctrl.load"
+  layout="column" 
+  class="box-msgs">
 
-    <header class="bg-base" layout="row">
-      <h1 flex="50">
-        <a href="#">Scup</a>
-      </h1>
-      <div flex="50">
-        <h2>Fale</h2>
+    <div layout="row">
+      
+      <div
+        flex-sm="100" flex-md="80" flex-gt-sm="60"
+        offset-sm="0" offset-md="10" offset-gt-sm="20"
+        layout="row" layout-wrap layout-align="space-around"
+        class="md-whiteframe-z2">
+      
+        <md-progress-circular md-mode="indeterminate" ng-hide="ctrl.error"></md-progress-circular>
+
+        <p flex="100" class="md-body-2" ng-hide="ctrl.error"><strong>Por favor aguarde enquanto os dados são carregados.</strong></p>
+        
+        <p flex="100" class="md-body-2" ng-show="ctrl.error">
+          <strong>Desculpe, ocorreu um erro inesperado tente novamente em instantes.</strong><br />
+          <a target="_self" href="/index.html">clique aqui.</a>
+        </p>
+      
       </div>
-    </header>
-    
-    <article layout="row">
-      sadasdsasda
-    </article>
 
-    <footer layout="row">
-      sadsadsdassd
-    </footer>
+    </div>
+
+</article>
+
+<article 
+  ng-hide="ctrl.load"
+  layout="column"
+  class="box-calculate">
+
+  <h3 class="md-headline md-primary" flex="100">Comparar Planos</h3>
+
+  <div layout="row">
+    
+    <ul
+      flex-sm="100" flex-md="80" flex-gt-sm="60"
+      offset-sm="0" offset-md="10" offset-gt-sm="20"
+      layout="row" layout-sm="column" layout-wrap
+      class="md-whiteframe-z2">
+      
+      <li flex-sm="100" flex="40">
+        <md-input-container layout-padding>
+          <label>Origem</label>
+          <md-select ng-model="form.origin" md-on-close="ctrl.refreshData()">
+            <md-option ng-repeat="dddList in ctrl.dddList" value="{{dddList.ddd}}">
+              {{dddList.ddd}} - {{dddList.city}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      </li>
+      <li flex-sm="100" flex="40">
+        
+        <md-input-container layout-padding>
+          <label>Destino</label>
+          <md-select ng-model="form.destination" md-on-close="ctrl.refreshData()">
+            <md-option ng-repeat="dddList in ctrl.dddList" value="{{dddList.ddd}}">
+              {{dddList.ddd}} - {{dddList.city}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+      </li>
+      <li flex-sm="100" flex="20">
+        <md-input-container layout-padding>
+          <label>Tempo</label>
+          <input ng-model="form.time" number-only maxlength="5" ng-keyup="ctrl.refreshData()">
+        </md-input-container>
+      </li>
+    </ul>
   </div>
+
+</article>
+
+<div ng-hide="ctrl.load" layout="row">
+  
+  <article class="box-prices"
+    flex-sm="100" flex-gt-sm="90" flex-gt-md="60" 
+    offset-sm="0" offset-gt-sm="5" offset-gt-md="20"
+    layout="row" layout-wrap>
+      
+      <p ng-repeat="data in ctrl.plansListPrint" flex-sm="50" flex="25">
+
+        <span class="title">{{data.title}}</span>
+        <strong class="price">
+          <span ng-bind-html="ctrl.plansListPrint[data.time].price.currency" class="currency"></span>
+          <span ng-bind-html="ctrl.plansListPrint[data.time].price.integer" class="integer"></span>
+          <span ng-bind-html="ctrl.plansListPrint[data.time].price.decimal" class="decimal"></span>
+        </strong>
+      </p>
+    
+  </article>
+
 </div>

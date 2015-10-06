@@ -22,11 +22,7 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        controller: 'MainCtrl as ctrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -34,5 +30,5 @@ angular
 
     $mdThemingProvider.theme('default')
     .primaryPalette('cyan')
-    .accentPalette('amber');
+    .accentPalette('orange');
   });

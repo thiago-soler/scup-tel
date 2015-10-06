@@ -1,59 +1,156 @@
-html, body {
+html {
   height: auto;
+  min-width: 450px;
+  overflow-y: scroll;
 }
+
 .bg-base{
   background-color: #2f3032;
 }
 
 header{
-  padding: 40px 0;
-}
-
-header h1,
-header h2{
-  margin: 0;
-  padding: 0;
-}
-
-header h1 a{
-  display: block;
-  float: right;
-  width: 110px;
-  height: 40px;
-  background-image: url(//cdnsite.scup.com/assets/img/scup-logo-orange.svg?v=2015929227);
-  background-size: 110px 40px;
-  text-indent: -999px;
-  margin: 0;
-  padding: 0;
-}
-
-header h2{
   position: relative;
-  float: left;
-  margin: 3px 0 0 8px;
-  font: bold 28px/22px Arial;
-  color:#ADADAD;
+  padding: 40px 0;
+
+  h1, h2{
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 a{
+    display: block;
+    float: right;
+    width: 110px;
+    height: 40px;
+    background-image: url(//cdnsite.scup.com/assets/img/scup-logo-orange.svg?v=2015929227);
+    background-size: 110px 40px;
+    text-indent: -999px;
+    margin: 0;
+    padding: 0;
+  }
+
+  h2{
+    position: relative;
+    float: left;
+    margin: 3px 0 0 8px;
+    font: bold 28px/22px Arial;
+    color:#ADADAD;
+  }
+
+  h2:before, h2:after{
+    content:"+";
+    width: 16px;
+    height: 20px;
+    position: absolute;
+  }
+  
+  h2:before{
+    top: -11px;
+    right: -13px;
+    font: bold 24px/24px Arial;
+    color: #FF6E00;
+  }
+
+  h2:after{
+    top: -13px;
+    right: -23px;
+    font: bold 14px/14px Arial;
+    color: #FF6E00;
+    opacity:0.6;
+  }
 }
 
-header h2:before{
-  content:"+";
-  width: 16px;
-  height: 20px;
-  position: absolute;
-  top: -11px;
-  right: -13px;
-  font: bold 24px/24px Arial;
-  color: #FF6E00;
+.box-msgs{
+  margin-top: 30px;
+
+  p{
+    padding: 10px 0 20px 0;
+    text-align: center;
+  }
 }
 
-header h2:after{
-  content:"+";
-  width: 16px;
-  height: 20px;
-  position: absolute;
-  top: -13px;
-  right: -23px;
-  font: bold 14px/14px Arial;
-  color: #FF6E00;
-  opacity:0.6;
+.box-calculate{
+
+  h3{
+    text-align: center;
+  }
+
+  ul{
+    
+    margin-top: 0;
+    margin-bottom: 0;
+
+    list-style-type: none;
+    text-indent: 0;
+    padding: 20px;
+
+    
+    
+  }
+
+}
+
+.box-prices{
+  position: relative;
+  margin-top: 40px;
+}
+
+header:after,
+.box-prices:after{
+    content: " ";
+    position: absolute;
+    background-size: 30% 100%;
+    height: 3px;
+    width: 100%;
+    border: 0;
+    right: 0;
+}
+
+header:after{
+  bottom: 0;
+  background: url(//cdnsite.scup.com/assets/img/header-line.png?v=2015929227)right bottom no-repeat #ff6e00;
+}
+
+.box-prices:after{
+  top: 0;
+  background-color: #ff6e00;
+}
+
+.box-prices{
+  p{
+    width: 100%;
+    position: relative;
+    float: left;
+    padding: 15px 0;
+    text-align: center;
+
+    .title{
+      display: block;
+      font: bold 15px/18px Arial;
+      color: #FF6E00;
+      text-align: center;
+    }
+
+    .currency, .decimal{
+      font: 12px/14px Arial;
+      color: #666;
+    }
+
+    .currency{
+      display: inline-block;
+      margin-right: 3px;
+    }
+
+    .price{
+      font-size: 0;
+      color: #666;
+      cursor: default;
+
+      .integer{
+        font: bold 30px/33px Arial;
+      }
+    }
+
+
+  }
 }
